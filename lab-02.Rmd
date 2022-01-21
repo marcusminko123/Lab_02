@@ -22,7 +22,7 @@ plastic_waste <- read.csv("data/plastic-waste.csv")
 You can't tell much from this visual, besides the fact that Oceania and South America have fewer countries registering waste per cap data.
 
 ```{r plastic-waste-continent}
-ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, color = continent)) + geom_histogram() + facet_wrap(~ continent)
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, color = continent, fill = continent)) + geom_histogram() + facet_wrap(~ continent) + labs(x = "Plastic Waste Per Cap", y = "Amount", title = "Plastic Waste by Continent")
 ```
 
 ### Exercise 2
@@ -32,7 +32,7 @@ ggplot(data = plastic_waste,
        mapping = aes(x = plastic_waste_per_cap, 
                      color = continent, 
                      fill = continent)) +
-  geom_density(alpha = 0.3)
+  geom_density(alpha = 0.3) + labs(x = "Plastic Waste Per Cap", y = "# of countries", title = "Plastic Waste by Continent")
 ```
 
 ### Exercise 3
@@ -45,16 +45,16 @@ function, and alpha is subordinate or nested within the geom_density function. T
 With the violin plot, opposed to boxplots, we lose some specificity regarding mean, quartiles, etc.
 
 ```{r plastic-waste-violin}
-ggplot(data = plastic_waste,    mapping = aes(x = continent, y = plastic_waste_per_cap, color = continent, fill = continent)) + geom_violin()
+ggplot(data = plastic_waste,    mapping = aes(x = continent, y = plastic_waste_per_cap, color = continent, fill = continent)) + geom_violin() + labs(x = "Continent", y = "Plastic Waste Per Cap", title = "Plastic Waste by Continent") 
 
 ```
 
 ### Exercise 5
 
-Based ont he scatterplot, there is not a clear relationship between the two variables. Perhaps one could say that there is a tendency that they are some what negatively correlated in that as waste per cap goes up, mismanaged waste goes down.
+Based on the scatterplot, there is not a clear relationship between the two variables. Perhaps one could say that there is a tendency that they are some what negatively correlated in that as waste per cap goes up, mismanaged waste goes down.
 
 ```{r plastic-waste-mismanaged}
-ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = mismanaged_plastic_waste)) + geom_point()
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = mismanaged_plastic_waste)) + geom_point() + labs(x = "Plastic Waste Per Cap", y = "Mismanaged Plastic Waste", title = "Plastic Waste x Mismanaged Plastic Waste")
 ```
 
 ### Exercise 6
@@ -62,7 +62,7 @@ ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = misman
 It seems that Asia is the worst offender of waste mismanagement.
 
 ```{r plastic-waste-mismanaged-continent}
-ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = mismanaged_plastic_waste, color = continent, shape = continent)) + geom_point() + scale_color_viridis_d()
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = mismanaged_plastic_waste, color = continent, shape = continent)) + geom_point() + scale_color_viridis_d() + labs(x = "Plastic Waste Per Cap", y = "# of countries", title = "Plastic Waste x Mismanaged Plastic Waste")
 ```
 
 ### Exercise 7
@@ -70,11 +70,11 @@ ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = misman
 There does not appear to be a linear relationship in either case.
 
 ```{r plastic-waste-population-total}
-ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = total_pop, color = continent, shape = continent)) + geom_point() + scale_color_viridis_d()
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = total_pop, color = continent, shape = continent)) + geom_point() + scale_color_viridis_d() + labs(x = "Plastic Waste Per Cap", y = "Total Population", title = "Plastic Waste x Total Population")
 ```
 
 ```{r plastic-waste-population-coastal}
-ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = coastal_pop, color = continent, shape = continent)) + geom_point() + scale_color_viridis_d()
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = coastal_pop, color = continent, shape = continent)) + geom_point() + scale_color_viridis_d() + labs(x = "Plastic Waste Per Cap", y = "Total Population", title = "Plastic Waste x Coastal Population")
 ```
 
 ### Exercise 8
