@@ -36,11 +36,11 @@ ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, color = co
 ggplot(data = plastic_waste, 
        mapping = aes(x = plastic_waste_per_cap, 
                      color = continent, 
-                     fill = continent)) +
+                     fill = continent)) + xlim(0, .8) +
   geom_density(alpha = 0.3) + labs(x = "Plastic Waste Per Cap", y = "# of countries", title = "Plastic Waste by Continent")
 ```
 
-    ## Warning: Removed 51 rows containing non-finite values (stat_density).
+    ## Warning: Removed 52 rows containing non-finite values (stat_density).
 
 ![](lab-02_files/figure-gfm/plastic-waste-density-1.png)<!-- -->
 
@@ -104,10 +104,10 @@ ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = total_
 ![](lab-02_files/figure-gfm/plastic-waste-population-total-1.png)<!-- -->
 
 ``` r
-ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = coastal_pop, color = continent, shape = continent)) + geom_point() + scale_color_viridis_d() + labs(x = "Plastic Waste Per Cap", y = "Total Population", title = "Plastic Waste x Coastal Population")
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = coastal_pop, color = continent, shape = continent)) + xlim(0, .8) + geom_point() + scale_color_viridis_d() + labs(x = "Plastic Waste Per Cap", y = "Total Population", title = "Plastic Waste x Coastal Population")
 ```
 
-    ## Warning: Removed 51 rows containing missing values (geom_point).
+    ## Warning: Removed 52 rows containing missing values (geom_point).
 
 ![](lab-02_files/figure-gfm/plastic-waste-population-coastal-1.png)<!-- -->
 
@@ -116,8 +116,26 @@ ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = coasta
 Remove this text, and add your answer for Exercise 8 here.
 
 ``` r
-# insert code here
+ggplot(data = plastic_waste)+
+  geom_point(mapping = aes(x = coastal_pop/total_pop,
+                     y =  plastic_waste_per_cap,
+                     color = continent)) +
+    geom_smooth(mapping = aes(x = coastal_pop/total_pop,
+                              y = plastic_waste_per_cap))+
+  ylim(0, 0.8) +
+  labs(title = "Plastic waste x coastal/total pop.",
+       x = "Coastal/total pop.)",
+       y = "Plastic waste per capita",
+       color = "Continent")
 ```
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning: Removed 62 rows containing non-finite values (stat_smooth).
+
+    ## Warning: Removed 62 rows containing missing values (geom_point).
+
+![](lab-02_files/figure-gfm/recreate-viz-1.png)<!-- -->
 
 ## Pro-Tips
 
