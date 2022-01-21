@@ -17,64 +17,99 @@ plastic_waste <- read.csv("data/plastic-waste.csv")
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
+You can’t tell much from this visual, besides the fact that Oceania and
+South America have fewer countries registering waste per cap data.
 
 ``` r
-ggplot(data = plastic_waste, 
-       mapping = aes(x = plastic_waste_per_cap, 
-                     color = continent)) +
-  geom_density()
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, color = continent, fill = continent)) + geom_histogram() + facet_wrap(~ continent) + labs(x = "Plastic Waste Per Cap", y = "Amount", title = "Plastic Waste by Continent")
 ```
 
-    ## Warning: Removed 51 rows containing non-finite values (stat_density).
+    ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+
+    ## Warning: Removed 51 rows containing non-finite values (stat_bin).
 
 ![](lab-02_files/figure-gfm/plastic-waste-continent-1.png)<!-- -->
 
 ### Exercise 2
 
 ``` r
-# insert code here
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap, 
+                     color = continent, 
+                     fill = continent)) +
+  geom_density(alpha = 0.3) + labs(x = "Plastic Waste Per Cap", y = "# of countries", title = "Plastic Waste by Continent")
 ```
+
+    ## Warning: Removed 51 rows containing non-finite values (stat_density).
+
+![](lab-02_files/figure-gfm/plastic-waste-density-1.png)<!-- -->
 
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 3 here.
+The color and fill features are a subordinate part of the mapping = aes
+function, and alpha is subordinate or nested within the geom_density
+function. These features can only be defined within their appropriate
+respective functions.
 
 ### Exercise 4
 
-Remove this text, and add your answer for Exercise 4 here.
+With the violin plot, opposed to boxplots, we lose some specificity
+regarding mean, quartiles, etc.
 
 ``` r
-# insert code here
+ggplot(data = plastic_waste,    mapping = aes(x = continent, y = plastic_waste_per_cap, color = continent, fill = continent)) + geom_violin() + labs(x = "Continent", y = "Plastic Waste Per Cap", title = "Plastic Waste by Continent") 
 ```
+
+    ## Warning: Removed 51 rows containing non-finite values (stat_ydensity).
+
+![](lab-02_files/figure-gfm/plastic-waste-violin-1.png)<!-- -->
 
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
+Based on the scatterplot, there is not a clear relationship between the
+two variables. Perhaps one could say that there is a tendency that they
+are some what negatively correlated in that as waste per cap goes up,
+mismanaged waste goes down.
 
 ``` r
-# insert code here
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = mismanaged_plastic_waste)) + geom_point() + labs(x = "Plastic Waste Per Cap", y = "Mismanaged Plastic Waste", title = "Plastic Waste x Mismanaged Plastic Waste")
 ```
+
+    ## Warning: Removed 51 rows containing missing values (geom_point).
+
+![](lab-02_files/figure-gfm/plastic-waste-mismanaged-1.png)<!-- -->
 
 ### Exercise 6
 
-Remove this text, and add your answer for Exercise 6 here.
+It seems that Asia is the worst offender of waste mismanagement.
 
 ``` r
-# insert code here
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = mismanaged_plastic_waste, color = continent, shape = continent)) + geom_point() + scale_color_viridis_d() + labs(x = "Plastic Waste Per Cap", y = "# of countries", title = "Plastic Waste x Mismanaged Plastic Waste")
 ```
+
+    ## Warning: Removed 51 rows containing missing values (geom_point).
+
+![](lab-02_files/figure-gfm/plastic-waste-mismanaged-continent-1.png)<!-- -->
 
 ### Exercise 7
 
-Remove this text, and add your answer for Exercise 7 here.
+There does not appear to be a linear relationship in either case.
 
 ``` r
-# insert code here
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = total_pop, color = continent, shape = continent)) + geom_point() + scale_color_viridis_d() + labs(x = "Plastic Waste Per Cap", y = "Total Population", title = "Plastic Waste x Total Population")
 ```
 
+    ## Warning: Removed 61 rows containing missing values (geom_point).
+
+![](lab-02_files/figure-gfm/plastic-waste-population-total-1.png)<!-- -->
+
 ``` r
-# insert code here
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = coastal_pop, color = continent, shape = continent)) + geom_point() + scale_color_viridis_d() + labs(x = "Plastic Waste Per Cap", y = "Total Population", title = "Plastic Waste x Coastal Population")
 ```
+
+    ## Warning: Removed 51 rows containing missing values (geom_point).
+
+![](lab-02_files/figure-gfm/plastic-waste-population-coastal-1.png)<!-- -->
 
 ### Exercise 8
 
