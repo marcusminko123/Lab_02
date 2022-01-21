@@ -19,59 +19,62 @@ plastic_waste <- read.csv("data/plastic-waste.csv")
 
 ### Exercise 1
 
-Remove this text, and add your answer for Exercise 1 here.
+You can't tell much from this visual, besides the fact that Oceania and South America have fewer countries registering waste per cap data.
 
 ```{r plastic-waste-continent}
-ggplot(data = plastic_waste, 
-       mapping = aes(x = plastic_waste_per_cap, 
-                     color = continent)) +
-  geom_density()
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, color = continent)) + geom_histogram() + facet_wrap(~ continent)
 ```
 
 ### Exercise 2
 
 ```{r plastic-waste-density}
-# insert code here
+ggplot(data = plastic_waste, 
+       mapping = aes(x = plastic_waste_per_cap, 
+                     color = continent, 
+                     fill = continent)) +
+  geom_density(alpha = 0.3)
 ```
 
 ### Exercise 3
 
-Remove this text, and add your answer for Exercise 3 here.
+The color and fill features are a subordinate part of the mapping = aes 
+function, and alpha is subordinate or nested within the geom_density function. These features can only be defined within their appropriate respective functions.
 
 ### Exercise 4
 
-Remove this text, and add your answer for Exercise 4 here.
+With the violin plot, opposed to boxplots, we lose some specificity regarding mean, quartiles, etc.
 
 ```{r plastic-waste-violin}
-# insert code here
+ggplot(data = plastic_waste,    mapping = aes(x = continent, y = plastic_waste_per_cap, color = continent, fill = continent)) + geom_violin()
+
 ```
 
 ### Exercise 5
 
-Remove this text, and add your answer for Exercise 5 here.
+Based ont he scatterplot, there is not a clear relationship between the two variables. Perhaps one could say that there is a tendency that they are some what negatively correlated in that as waste per cap goes up, mismanaged waste goes down.
 
 ```{r plastic-waste-mismanaged}
-# insert code here
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = mismanaged_plastic_waste)) + geom_point()
 ```
 
 ### Exercise 6
 
-Remove this text, and add your answer for Exercise 6 here.
+It seems that Asia is the worst offender of waste mismanagement.
 
 ```{r plastic-waste-mismanaged-continent}
-# insert code here
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = mismanaged_plastic_waste, color = continent, shape = continent)) + geom_point() + scale_color_viridis_d()
 ```
 
 ### Exercise 7
 
-Remove this text, and add your answer for Exercise 7 here.
+There does not appear to be a linear relationship in either case.
 
 ```{r plastic-waste-population-total}
-# insert code here
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = total_pop, color = continent, shape = continent)) + geom_point() + scale_color_viridis_d()
 ```
 
 ```{r plastic-waste-population-coastal}
-# insert code here
+ggplot(data = plastic_waste, mapping = aes(x = plastic_waste_per_cap, y = coastal_pop, color = continent, shape = continent)) + geom_point() + scale_color_viridis_d()
 ```
 
 ### Exercise 8
